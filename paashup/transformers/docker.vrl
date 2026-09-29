@@ -1,0 +1,16 @@
+# Normalizes the fields set by FlowG's built-in syslog source (RFC3164, as
+# produced by dockerd's `syslog` logging driver configured with
+# `--log-opt tag="{{.Name}}"`, see paashup-install.sh) into stable names.
+# Records ingested some other way (API, direct source) don't have these
+# fields and are left untouched.
+if exists(.tag) {
+  .container = del(.tag)
+}
+
+if exists(.hostname) {
+  .host = del(.hostname)
+}
+
+if exists(.content) {
+  .message = del(.content)
+}

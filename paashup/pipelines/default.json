@@ -1,0 +1,51 @@
+{
+  "flow": {
+    "version": 2,
+    "nodes": [
+      {
+        "id": "__builtin__source_direct",
+        "type": "source",
+        "position": { "x": -45, "y": 0 },
+        "data": { "type": "direct" }
+      },
+      {
+        "id": "__builtin__source_syslog",
+        "type": "source",
+        "position": { "x": -45, "y": 120 },
+        "data": { "type": "syslog" }
+      },
+      {
+        "id": "transform-docker",
+        "type": "transform",
+        "position": { "x": 150, "y": 60 },
+        "data": { "transformer": "docker" }
+      },
+      {
+        "id": "router-default",
+        "type": "router",
+        "position": { "x": 400, "y": 60 },
+        "data": { "stream": "default" }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge-direct-transform",
+        "source": "__builtin__source_direct",
+        "sourceHandle": "",
+        "target": "transform-docker"
+      },
+      {
+        "id": "edge-syslog-transform",
+        "source": "__builtin__source_syslog",
+        "sourceHandle": "",
+        "target": "transform-docker"
+      },
+      {
+        "id": "edge-transform-router",
+        "source": "transform-docker",
+        "sourceHandle": "",
+        "target": "router-default"
+      }
+    ]
+  }
+}
