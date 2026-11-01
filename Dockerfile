@@ -1,4 +1,4 @@
-FROM linksociety/flowg:v0.57.1
+FROM linksociety/flowg:v0.64.0
 
 RUN apk add --no-cache curl jq
 
